@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+</head>
+
+<link type="text/css" rel="stylesheet" href="WebPageStyle.css">
+<title>PackageDB</title>
+<body id="body">
+
+<div id="menu">
+    <p style="color: #0066FF; letter-spacing: 0.04em; font-size: 40px; text-align: center">Welcome</p>
+    <input type="text" id="Email" placeholder="Email" style="left:50px; top: 120px" class="minput">
+    <input type="password" id="pwd" placeholder="Password" style="left:50px; top: 200px" class="minput">
+    <input type="button" id="login" class="button" onclick="login()" value="Login" style="right: 10px; top:360px">
+    <input type="button" id="mcreate" class="button" onclick="createAccount()" value="Create" style="left: 10px; top:360px">
+</div>
+
+<div id="createWin" class="commonWin">
+    <p style="color: #0066FF; letter-spacing: 0.04em; font-size: 40px; text-align: center">Create Account</p>
+    <input class="text" type="text" id="cname" placeholder="Name" style="width:450px; left:60px; top:100px">
+    <input class="text" type="text" id="cemail" placeholder="Email" style="width:450px; left:60px; top:150px">
+    <input class="text" type="text" id="cpwd" placeholder="Password" style="width:450px; left:60px; top:200px">
+    <input class="text" type="text" id="cphone" placeholder="Phone Number" style="width:450px; left:60px; top:250px">
+    <label style="letter-spacing: 0.03em; font-size: 30px; position: absolute; left: 200px; top: 300px">My Address</label>
+    <input class="text" type="text" id="captnum" placeholder="Apartment Number" style="width:200px; left:60px; top:350px">
+    <input class="text" type="text" id="cst" placeholder="Street" style="width:200px; right:90px; top:350px">
+    <input class="text" type="text" id="ccity" placeholder="City" style="width:200px; left:60px; top:400px">
+    <input class="text" type="text" id="cstate" placeholder="State" style="width:200px; right:90px; top:400px">
+    <input class="text" type="text" id="ccountry" placeholder="Country" style="width:200px; left:60px; top:450px">
+    <input class="text" type="text" id="czip" placeholder="Zip" style="width:200px; right:90px; top:450px">
+    <input class="button" type="button" id="ccreate" value="Create" onclick="hideCreateWin()" style="right: 10px; top:550px">
+    <input class="button" type="button" id="ccancel" value="Cancel" onclick="hideCreateWin()" style="left: 10px; top: 550px">
+</div>
+
+<div id="menuList">
+    <input type="button" id="managePkg" value="My Account" class="mainbutton" onclick="listAllPackages()">
+    <input type="button" id="logout" value="Log Out" class="mainbutton" onclick="logout()" style="right:10px">
+    <input type="button" id="ad" value="Add Package" class="mainbutton" onclick="showAddPkgWin()" style="right: 500px">
+</div>
+
+<div id="pkgLi">
+<ul id="allPkg" style="display: block">
+    <p id="pkgTitle" style="position: relative; color: #96c2f1; letter-spacing: 0.06em; font-size: 45px; text-align: center; top: 50px; display: block">My Packages</p>
+    <li> </li>
+    <li onclick="showPkgDetailsWin(this)">TrackingID: 1534</li>
+    <li onclick="showPkgWin(this)">TrackingID: 2364</li>
+    <li onclick="showPkgWin(this)">TrackingID: 3932</li>
+    <li onclick="showPkgWin(this)">TrackingID: 9595</li>
+    <li onclick="showPkgWin(this)">TrackingID: 2474</li>
+    <li onclick="showPkgWin(this)">TrackingID: 2846</li>
+    <li onclick="showPkgWin(this)">TrackingID: 3485 </li>
+</ul>
+
+</div>
+
+<div id="addPkg" class="commonWin">
+    <p style="color: #0066FF; letter-spacing: 0.04em; font-size: 40px; text-align: center">Add Package</p>
+    <input class="text" type="text" id="receiver" placeholder="Receiver" style="width:450px; left:60px; top:100px">
+    <input class="text" type="text" id="sender" placeholder="Sender" style="width:450px; left:60px; top:150px">
+    <input class="text" type="text" id="pkgType" placeholder="Package Type" style="width:450px; left:60px; top:200px">
+    <input class="text" type="text" id="pkgWeight" placeholder="Package Weight (kg)" style="width:450px; left:60px; top:250px">
+    <label style="font-size: 25px; position: absolute; left: 60px; top: 300px">Hazardous</label>
+    <label style="font-size: 20px; position: absolute; left: 250px; top: 305px">Yes</label>
+    <label style="font-size: 20px; position: absolute; left: 400px; top: 305px">No</label>
+    <label style="font-size: 30px; position: absolute; left: 180px; top: 340px">Shipping Address</label>
+    <input class="text" type="text" id="saptnum" placeholder="Apartment Number" style="width:200px; left:60px; top:400px">
+    <input class="text" type="text" id="sst" placeholder="Street" style="width:200px; right:90px; top:400px">
+    <input class="text" type="text" id="scity" placeholder="City" style="width:200px; left:60px; top:450px">
+    <input class="text" type="text" id="sstate" placeholder="State" style="width:200px; right:90px; top:450px">
+    <input class="text" type="text" id="scountry" placeholder="Country" style="width:200px; left:60px; top:500px">
+    <input class="text" type="text" id="szip" placeholder="Zip" style="width:200px; right:90px; top:500px">
+    <input name="hazardous" class="checkbox" type="radio" style="position: absolute; right:360px; top: 310px">
+    <input name="hazardous" class="checkbox" type="radio" style="position: absolute; right: 210px; top: 310px">
+    <input class="button" type="button" id="screate" value="Add" onclick="addPackage()" style="right: 10px; top:560px">
+    <input class="button" type="button" id="scancel" value="Cancel" onclick="hideAddPkgWin()" style="left: 10px; top: 560px">
+</div>
+
+<div id="pkgDetails">
+    <label style="font-size: 30px; position: absolute; left: 180px; top: 20px">TrackingID: 395735</label>
+    <label style="font-size: 30px; position: absolute; left: 200px; top: 80px; text-decoration: underline">Shipping Details</label>
+    <label style="font-size: 30px; position: absolute; left: 200px; top: 350px; text-decoration: underline">Package Details</label>
+    <label style="font-size: 20px; position: absolute; left: 60px; top: 130px">Shipped Date: 08/31/2018</label>
+    <label style="font-size: 20px; position: absolute; left: 60px; top: 160px">Estimated Date: 10/09/2018</label>
+    <label style="font-size: 20px; position: absolute; left: 60px; top: 190px">Shipping Address: 326 Salt Rd, Rochester, NY, 24580, US</label>
+    <label style="font-size: 20px; position: absolute; left: 60px; top: 220px">Status</label>
+    <label style="font-size: 20px; position: absolute; left: 230px; top: 227px">delivering</label>
+    <label style="font-size: 20px; position: absolute; left: 230px; top: 257px">delivered</label>
+    <label style="font-size: 20px; position: absolute; left: 230px; top: 287px">signed</label>
+    <input name="status" type="radio" style="position: absolute; left:200px; top: 230px">
+    <input name="status" type="radio" style="position: absolute; left: 200px; top: 260px">
+    <input name="status" type="radio" style="position: absolute; left:200px; top: 290px">
+    <label style="font-size: 20px; position: absolute; left: 60px; top: 400px">Sender: Ashley</label>
+    <label style="font-size: 20px; position: absolute; left: 60px; top: 430px">Receiver: Jackson</label>
+    <label style="font-size: 20px; position: absolute; left: 60px; top: 460px">Weight: 2 kg</label>
+    <label style="font-size: 20px; position: absolute; left: 60px; top: 490px">Type: Books</label>
+    <label style="font-size: 30px; position: absolute; left: 200px; top: 540px; text-decoration: underline">Shipping Routes</label>
+    <label style="font-size: 20px; position: absolute; left: 130px; top: 600px">Date</label>
+    <label style="font-size: 20px; position: absolute; left: 330px; top: 600px">Location</label>
+    <label style="font-size: 20px; position: absolute; left: 100px; top: 630px">09/30/2018</label>
+    <label style="font-size: 20px; position: absolute; left: 300px; top: 630px">Santa Barbara, CA, US</label>
+    <label style="font-size: 20px; position: absolute; left: 100px; top: 660px">10/02/2018</label>
+    <label style="font-size: 20px; position: absolute; left: 300px; top: 660px">New York, NY, US</label>
+    <input class="sbutton" type="button" id="Back" value="Back" onclick="hidePkgDetailsWin()" style="right: 10px;">
+    <input class="sbutton" type="button" id="Delete" value="Delete" onclick="deletePackage()" style="left: 10px;">
+
+
+
+
+</div>
+
+<div id="profile">
+
+</div>
+
+
+<script style="text/javascript">
+    function showMenu(){
+        document.getElementById("menu").style.display = "block";
+        document.getElementById("body").style.background = "gray";
+    }
+
+    function hideMenu() {
+        document.getElementById("menu").style.display = "none";
+        document.getElementById("body").style.background = "#333333";
+    }
+
+    function login() {
+        hideMenu();
+        document.getElementById("menuList").style.display = "block";
+        showMainButtons();
+        showPkgLi();
+        showAddPkgWin();
+    }
+
+    function logout() {
+        hideMainButtons();
+        hidePkgLi();
+        showMenu();
+    }
+
+    function hideCreateWin(){
+        document.getElementById("createWin").style.display = "none";
+        document.getElementById("menu").style.display = "block";
+    }
+
+    function createAccount() {
+        document.getElementById("menu").style.display = "none";
+        document.getElementById("createWin").style.display = "block";
+    }
+
+    function showMainButtons(){
+        document.getElementById("logout").style.display = "block";
+        document.getElementById("managePkg").style.display = "block";
+        document.getElementById("ad").style.display = "block";
+    }
+
+    function hideMainButtons(){
+        document.getElementById("logout").style.display = "none";
+        document.getElementById("managePkg").style.display = "none";
+    }
+
+    function addLi(package){
+        var li = document.createElement("li");
+        li.setAttribute("class", "newLi");
+        addSpan(li, package);
+        addDelButton(li);
+        document.getElementById("allPkg").appendChild(li);
+    }
+
+    function addSpan(li, package){
+        var span = document.create("span");
+        span.innerHTML = package.id + "    " + "package.status";
+        li.appendChild(span);
+    }
+
+    function addPackage(){
+        confirm("Are you sure to add a new package?");
+        hideAddPkgWin();
+    }
+
+    function deletePackage(){
+        confirm("Are you sure to delete this package?");
+    }
+
+    function showAddPkgWin(){
+        document.getElementById("addPkg").style.display = "block";
+    }
+
+    function hideAddPkgWin(){
+        document.getElementById("addPkg").style.display = "none";
+    }
+
+    function showPkgDetailsWin(){
+        document.getElementById("pkgDetails").style.display = "block";
+
+    }
+
+    function hidePkgDetailsWin(){
+        document.getElementById("pkgDetails").style.display = "none";
+
+    }
+
+    function deletePackage(){
+        confirm("Are you sure to delete this package?");
+        hidePkgDetailsWin();
+    }
+
+    function showPkgLi(){
+        document.getElementById("pkgLi").style.display = "block";
+    }
+
+    function hidePkgLi(){
+        document.getElementById("pkgLi").style.display = "none";
+    }
+
+
+
+</script>
+
+</body>
+</html>

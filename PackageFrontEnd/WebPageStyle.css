@@ -1,0 +1,155 @@
+
+#menu{
+    position: absolute;
+    margin: -200px 0 0 -200px;
+    height: 400px;
+    width: 400px;
+    left: 50%;
+    right: 50%;
+    top: 50%;
+    bottom: 50%;
+    border: 1px solid #96c2f1;
+    border-radius: 3px;
+    background-color: #eefaff;
+}
+
+#menuList{
+    display: none;
+    background-color: #333333；
+}
+
+#pkgLi{
+    position: absolute;
+    margin: -500px 0 0 -500px;
+    width: 1000px;
+    left: 50%;
+    right: 50%;
+    bottom: 50px;
+    display: none;
+}
+
+.commonWin{
+    position: absolute;
+    margin: -300px 0 0 -300px;
+    height: 600px;
+    width: 600px;
+    left: 50%;
+    right: 50%;
+    top: 50%;
+    bottom: 50%;
+    border: 1px solid #96c2f1;
+    border-radius: 3px;
+    background-color: #eefaff;
+    display: none;
+}
+
+#pkgDetails{
+    position: absolute;
+    margin: -300px 0 0 -300px;
+    height: 600px;
+    width: 600px;
+    left: 50%;
+    right: 50%;
+    top: 50%;
+    bottom: 50%;
+    border: 1px solid #96c2f1;
+    border-radius: 3px;
+    background-color: #eefaff;
+    overflow: scroll;
+    display: none;
+}
+
+
+.text{
+    position: absolute;
+    height: 30px;
+    border: 1px solid #96c2f1;
+    border-width: 1px;
+    border-radius: 3px;
+    text-align: center;
+}
+
+.minput{
+    position: absolute;
+    height: 30px;
+    width: 300px;
+    border: 1px solid #96c2f1;
+    border-width: 1px;
+    border-radius: 3px;
+    text-align: center;
+}
+
+
+
+.button{
+    position: absolute;
+    height: 30px;
+    width: 150px;
+    border-width: 0px;
+    border-radius: 3px;
+    background: #96c2f1;
+    outline: none;
+    color: black;
+    cursor: pointer;
+    font-size: 17px
+}
+
+.button:hover{
+    background: #5599FF;
+}
+
+.sbutton{
+    position: fixed;
+    bottom: 10px;
+    height: 30px;
+    width: 150px;
+    border-width: 0px;
+    border-radius: 3px;
+    background: #96c2f1;
+    outline: none;
+    color: black;
+    cursor: pointer;
+    font-size: 17px;
+    overflow: hidden;
+}
+
+.sbutton:hover{
+    background: #5599FF;
+}
+
+
+body{
+    background-color: #CCCCCC;
+}
+
+.mainbutton{
+    font-size: 30px;
+    color: white;
+    position: absolute;
+    height: 60px;
+    width: 350px;
+    background-color: #333333;
+    display: none;
+}
+
+.mainbutton:hover{
+    background: #5599FF;
+}
+
+ul li{
+    margin: 0px;
+    line-height: 60px;
+    background: gray;
+    over-flow: hidden;
+    list-style-type: none;
+    text-align: center;
+    font-size: 32px;
+    color: white;
+}
+
+
+ul li:hover{
+    text-color: black;
+    background: #CCCCCC;
+}
+
