@@ -6,218 +6,363 @@
 </head>
 
 <link type="text/css" rel="stylesheet" href="WebPageStyle.css">
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
 <title>PackageDB</title>
 <body id="body">
+
+<input type="button" value="getAllTrucks" onclick="getAllTrucks()">
 
 <div id="menu">
     <p style="color: #0066FF; letter-spacing: 0.04em; font-size: 40px; text-align: center">Welcome</p>
     <input type="text" id="Email" placeholder="Email" style="left:50px; top: 120px" class="minput">
     <input type="password" id="pwd" placeholder="Password" style="left:50px; top: 200px" class="minput">
-    <input type="button" id="login" class="button" onclick="login()" value="Login" style="right: 10px; top:360px">
-    <input type="button" id="mcreate" class="button" onclick="createAccount()" value="Create" style="left: 10px; top:360px">
+    <input type="button" id="login" class="button" onclick="userLogIn()" value="Login" style="right: 10px; top:360px">
+    <input type="button" id="mcreate" class="button" onclick="createAccountWin()" value="Create" style="left: 10px; top:360px">
 </div>
 
 <div id="createWin" class="commonWin">
     <p style="color: #0066FF; letter-spacing: 0.04em; font-size: 40px; text-align: center">Create Account</p>
-    <input class="text" type="text" id="cname" placeholder="Name" style="width:450px; left:60px; top:100px">
-    <input class="text" type="text" id="cemail" placeholder="Email" style="width:450px; left:60px; top:150px">
-    <input class="text" type="text" id="cpwd" placeholder="Password" style="width:450px; left:60px; top:200px">
-    <input class="text" type="text" id="cphone" placeholder="Phone Number" style="width:450px; left:60px; top:250px">
-    <label style="letter-spacing: 0.03em; font-size: 30px; position: absolute; left: 200px; top: 300px">My Address</label>
-    <input class="text" type="text" id="captnum" placeholder="Apartment Number" style="width:200px; left:60px; top:350px">
-    <input class="text" type="text" id="cst" placeholder="Street" style="width:200px; right:90px; top:350px">
-    <input class="text" type="text" id="ccity" placeholder="City" style="width:200px; left:60px; top:400px">
-    <input class="text" type="text" id="cstate" placeholder="State" style="width:200px; right:90px; top:400px">
-    <input class="text" type="text" id="ccountry" placeholder="Country" style="width:200px; left:60px; top:450px">
-    <input class="text" type="text" id="czip" placeholder="Zip" style="width:200px; right:90px; top:450px">
-    <input class="button" type="button" id="ccreate" value="Create" onclick="hideCreateWin()" style="right: 10px; top:550px">
+    <input name = "caccount" class="text" type="text" id="cname" placeholder="Name" style="width:450px; left:60px; top:100px">
+    <input name = "caccount" class="text" type="text" id="cemail" placeholder="Email" style="width:450px; left:60px; top:150px">
+    <input name = "caccount" class="text" type="text" id="cpwd" placeholder="Password" style="width:450px; left:60px; top:200px">
+    <input name = "caccount" class="text" type="text" id="cphone" placeholder="Phone Number" style="width:450px; left:60px; top:250px">
+    <label style="letter-spacing: 0.03em; font-size: 30px; position: absolute; left: 140px; top: 300px">My BankCard & Account</label>
+    <input name = "caccount" class="text" type="text" id="captnum" placeholder="Account Number" style="width:200px; left:60px; top:350px">
+    <input name = "caccount" class="text" type="text" id="cst" placeholder="Routing Number" style="width:200px; right:90px; top:350px">
+    <input name = "caccount" class="text" type="text" id="ccity" placeholder="Holder Name" style="width:200px; left:60px; top:400px">
+    <input name = "caccount" class="text" type="text" id="cstate" placeholder="Card Number" style="width:200px; right:90px; top:400px">
+    <input name = "caccount" class="text" type="text" id="ccountry" placeholder="cvv2" style="width:200px; left:60px; top:450px">
+    <input name = "caccount" class="text" type="text" id="czip" placeholder="Expiration Date(eg. 09/2019)" style="width:200px; right:90px; top:450px">
+    <input class="button" type="button" id="ccreate" value="Create" onclick="createAccount()" style="right: 10px; top:550px">
     <input class="button" type="button" id="ccancel" value="Cancel" onclick="hideCreateWin()" style="left: 10px; top: 550px">
 </div>
 
 <div id="menuList">
-    <input type="button" id="managePkg" value="My Account" class="mainbutton" onclick="listAllPackages()">
+    <input type="button" id="MyAccount" value="My Account" class="mainbutton" onclick="getAccountInfo(userID)">
     <input type="button" id="logout" value="Log Out" class="mainbutton" onclick="logout()" style="right:10px">
-    <input type="button" id="ad" value="Add Package" class="mainbutton" onclick="showAddPkgWin()" style="right: 500px">
+    <input type="button" id="ad" value="Add Package" class="mainbutton" onclick="showAddPkgWin()" style="right: 535px">
 </div>
+
 
 <div id="pkgLi">
 <ul id="allPkg" style="display: block">
-    <p id="pkgTitle" style="position: relative; color: #96c2f1; letter-spacing: 0.06em; font-size: 45px; text-align: center; top: 50px; display: block">My Packages</p>
-    <li> </li>
-    <li onclick="showPkgDetailsWin(this)">TrackingID: 1534</li>
-    <li onclick="showPkgWin(this)">TrackingID: 2364</li>
-    <li onclick="showPkgWin(this)">TrackingID: 3932</li>
-    <li onclick="showPkgWin(this)">TrackingID: 9595</li>
-    <li onclick="showPkgWin(this)">TrackingID: 2474</li>
-    <li onclick="showPkgWin(this)">TrackingID: 2846</li>
-    <li onclick="showPkgWin(this)">TrackingID: 3485 </li>
+    <p id="pkgTitle" style="position: relative; border-top: 50px; color: #96c2f1; letter-spacing: 0.06em; font-size: 45px; text-align: center; top: 50px; display: block">My Packages</p>
 </ul>
 
 </div>
 
 <div id="addPkg" class="commonWin">
     <p style="color: #0066FF; letter-spacing: 0.04em; font-size: 40px; text-align: center">Add Package</p>
-    <input class="text" type="text" id="receiver" placeholder="Receiver" style="width:450px; left:60px; top:100px">
-    <input class="text" type="text" id="sender" placeholder="Sender" style="width:450px; left:60px; top:150px">
-    <input class="text" type="text" id="pkgType" placeholder="Package Type" style="width:450px; left:60px; top:200px">
-    <input class="text" type="text" id="pkgWeight" placeholder="Package Weight (kg)" style="width:450px; left:60px; top:250px">
+    <input name = "pkgd" class="text" type="text" id="receiver" placeholder="Receiver" style="width:450px; left:60px; top:100px">
+    <input name = "pkgd" class="text" type="text" id="sender" placeholder="Sender" style="width:450px; left:60px; top:150px">
+    <input name = "pkgd" class="text" type="text" id="pkgType" placeholder="Package Type" style="width:450px; left:60px; top:200px">
+    <input name = "pkgd" class="text" type="text" id="pkgWeight" placeholder="Package Weight (kg)" style="width:450px; left:60px; top:250px">
     <label style="font-size: 25px; position: absolute; left: 60px; top: 300px">Hazardous</label>
     <label style="font-size: 20px; position: absolute; left: 250px; top: 305px">Yes</label>
     <label style="font-size: 20px; position: absolute; left: 400px; top: 305px">No</label>
     <label style="font-size: 30px; position: absolute; left: 180px; top: 340px">Shipping Address</label>
-    <input class="text" type="text" id="saptnum" placeholder="Apartment Number" style="width:200px; left:60px; top:400px">
-    <input class="text" type="text" id="sst" placeholder="Street" style="width:200px; right:90px; top:400px">
-    <input class="text" type="text" id="scity" placeholder="City" style="width:200px; left:60px; top:450px">
-    <input class="text" type="text" id="sstate" placeholder="State" style="width:200px; right:90px; top:450px">
-    <input class="text" type="text" id="scountry" placeholder="Country" style="width:200px; left:60px; top:500px">
-    <input class="text" type="text" id="szip" placeholder="Zip" style="width:200px; right:90px; top:500px">
+    <input name = "pkgd" class="text" type="text" id="saptnum" placeholder="Apt. NO." style="width:90px; left:60px; top:400px">
+    <input name = "pkgd" class="text" type="text" id="sst" placeholder="Street" style="width:200px; right:90px; top:400px">
+    <input name = "pkgd" class="text" type="text" id="scity" placeholder="City" style="width:200px; left:60px; top:450px">
+    <input name = "pkgd" class="text" type="text" id="sstate" placeholder="State" style="width:200px; right:90px; top:450px">
+    <input name = "pkgd" class="text" type="text" id="scountry" placeholder="Country" style="width:200px; left:60px; top:500px">
+    <input name = "pkgd" class="text" type="text" id="szip" placeholder="Zip" style="width:200px; right:90px; top:500px">
+    <input name = "pkgd" class="text" type="text" id="sstn" placeholder="Street NO." style="width:90px; left:170px; top:400px">
     <input name="hazardous" class="checkbox" type="radio" style="position: absolute; right:360px; top: 310px">
     <input name="hazardous" class="checkbox" type="radio" style="position: absolute; right: 210px; top: 310px">
-    <input class="button" type="button" id="screate" value="Add" onclick="addPackage()" style="right: 10px; top:560px">
+    <input class="button" type="button" id="screate" value="Add" onclick="addOnePackage()" style="right: 10px; top:560px">
     <input class="button" type="button" id="scancel" value="Cancel" onclick="hideAddPkgWin()" style="left: 10px; top: 560px">
 </div>
 
 <div id="pkgDetails">
-    <label style="font-size: 30px; position: absolute; left: 180px; top: 20px">TrackingID: 395735</label>
+    <label id = "trackingId" style="font-size: 30px; position: absolute; left: 180px; top: 20px">TrackingID: 395735</label>
     <label style="font-size: 30px; position: absolute; left: 200px; top: 80px; text-decoration: underline">Shipping Details</label>
     <label style="font-size: 30px; position: absolute; left: 200px; top: 350px; text-decoration: underline">Package Details</label>
-    <label style="font-size: 20px; position: absolute; left: 60px; top: 130px">Shipped Date: 08/31/2018</label>
-    <label style="font-size: 20px; position: absolute; left: 60px; top: 160px">Estimated Date: 10/09/2018</label>
-    <label style="font-size: 20px; position: absolute; left: 60px; top: 190px">Shipping Address: 326 Salt Rd, Rochester, NY, 24580, US</label>
-    <label style="font-size: 20px; position: absolute; left: 60px; top: 220px">Status</label>
-    <label style="font-size: 20px; position: absolute; left: 230px; top: 227px">delivering</label>
-    <label style="font-size: 20px; position: absolute; left: 230px; top: 257px">delivered</label>
-    <label style="font-size: 20px; position: absolute; left: 230px; top: 287px">signed</label>
-    <input name="status" type="radio" style="position: absolute; left:200px; top: 230px">
-    <input name="status" type="radio" style="position: absolute; left: 200px; top: 260px">
-    <input name="status" type="radio" style="position: absolute; left:200px; top: 290px">
-    <label style="font-size: 20px; position: absolute; left: 60px; top: 400px">Sender: Ashley</label>
-    <label style="font-size: 20px; position: absolute; left: 60px; top: 430px">Receiver: Jackson</label>
-    <label style="font-size: 20px; position: absolute; left: 60px; top: 460px">Weight: 2 kg</label>
-    <label style="font-size: 20px; position: absolute; left: 60px; top: 490px">Type: Books</label>
+    <label id = "sd" style="font-size: 20px; position: absolute; left: 60px; top: 130px">Shipped Date: 08/31/2018</label>
+    <label id = "ed" style="font-size: 20px; position: absolute; left: 60px; top: 160px">Estimated Date: 10/09/2018</label>
+    <label id = "ads" style="font-size: 20px; position: absolute; left: 60px; top: 190px">Shipping Address: 326 Salt Rd, Rochester, NY, 24580, US</label>
+    <label id = "status" style="font-size: 20px; position: absolute; left: 60px; top: 300px">Status</label>
+    <label id = "sder" style="font-size: 20px; position: absolute; left: 60px; top: 400px">Sender: Ashley</label>
+    <label id = "rcer" style="font-size: 20px; position: absolute; left: 60px; top: 430px">Receiver: Jackson</label>
+    <label id = "wt" style="font-size: 20px; position: absolute; left: 60px; top: 460px">Weight: 2 kg</label>
+    <label id = "type" style="font-size: 20px; position: absolute; left: 60px; top: 490px">Type: Books</label>
     <label style="font-size: 30px; position: absolute; left: 200px; top: 540px; text-decoration: underline">Shipping Routes</label>
     <label style="font-size: 20px; position: absolute; left: 130px; top: 600px">Date</label>
     <label style="font-size: 20px; position: absolute; left: 330px; top: 600px">Location</label>
-    <label style="font-size: 20px; position: absolute; left: 100px; top: 630px">09/30/2018</label>
-    <label style="font-size: 20px; position: absolute; left: 300px; top: 630px">Santa Barbara, CA, US</label>
+    <label id = "date" style="font-size: 20px; position: absolute; left: 100px; top: 630px">09/30/2018</label>
+    <label id = "place"style="font-size: 20px; position: absolute; left: 300px; top: 630px">Santa Barbara, CA, US</label>
     <label style="font-size: 20px; position: absolute; left: 100px; top: 660px">10/02/2018</label>
     <label style="font-size: 20px; position: absolute; left: 300px; top: 660px">New York, NY, US</label>
     <input class="sbutton" type="button" id="Back" value="Back" onclick="hidePkgDetailsWin()" style="right: 10px;">
-    <input class="sbutton" type="button" id="Delete" value="Delete" onclick="deletePackage()" style="left: 10px;">
+    <input class="sbutton" type="button" id="Delete" value="Delete" onclick="deleteAPackage()" style="left: 10px;">
 
 
 
 
 </div>
 
-<div id="profile">
-
+<div id="profile" class="commonWin">
+    <label style="font-size: 30px; position: absolute; left: 230px; top: 20px; color: blue">My Account</label>
+    <label class = "uinfo" id="uname" style="position: absolute; font-size: 20px; left:60px; top:100px">Name: Ashley</label>
+    <label class = "uinfo" id="uemail" style="position: absolute; font-size: 20px; left:60px; top:150px">Email: 23894892u092@qq.com</label>
+    <label class = "uinfo" id="uphone"  style="position: absolute; font-size: 20px; left:60px; top:200px">Phone Number: 3289423839</label>
+    <label style="letter-spacing: 0.03em; font-size: 25px; position: absolute; left: 150px; top: 250px; text-decoration: underline">My BankCard & Account</label>
+    <label class = "uinfo" id="uaptnum" style="position: absolute; font-size: 20px; left:60px; top:300px">Account Number</label>
+    <label class = "uinfo" id="ust"  style="position: absolute; font-size: 20px; left:60px; top:350px">Routing Number</label>
+    <label class = "uinfo" id="ucity"  style="position: absolute; font-size: 20px; left:60px; top:400px">Holder Name</label>
+    <label class = "uinfo"  id="ustate" style="position: absolute; font-size: 20px; left:60px; top:450px">Card Number</label>
+    <label class = "uinfo"  id="ucountry"  style="position: absolute; font-size: 20px; left:60px; top:500px">cvv2</label>
+    <label class = "uinfo" id="uzip"  style="position: absolute; font-size: 20px; right:90px; top:500px">Expiration Date</label>
+    <input class="button" type="button" value="Cancel" onclick="hideAccountWin()" style="left: 10px; top: 550px">
 </div>
 
+<script type="text/javascript" src="WindowControl.js"></script>
 
-<script style="text/javascript">
-    function showMenu(){
-        document.getElementById("menu").style.display = "block";
-        document.getElementById("body").style.background = "gray";
+</body>
+
+<script type="text/javascript">
+
+    var userID = "";
+    var curpkg = "";
+
+    function getAllTrucks(){
+        //addOnePackage()
+        //getUserOnePackage('322');
+        $.ajax({
+            url: "http://localhost:5000/AllPackages",
+            datatype: 'json',
+            success: function(res){
+            },
+            error: function(res){
+                alert("error");
+            }
+        });
     }
-
-    function hideMenu() {
-        document.getElementById("menu").style.display = "none";
-        document.getElementById("body").style.background = "#333333";
-    }
-
-    function login() {
-        hideMenu();
-        document.getElementById("menuList").style.display = "block";
-        showMainButtons();
-        showPkgLi();
-        showAddPkgWin();
-    }
-
-    function logout() {
-        hideMainButtons();
-        hidePkgLi();
-        showMenu();
-    }
-
-    function hideCreateWin(){
-        document.getElementById("createWin").style.display = "none";
-        document.getElementById("menu").style.display = "block";
-    }
-
+    
     function createAccount() {
-        document.getElementById("menu").style.display = "none";
-        document.getElementById("createWin").style.display = "block";
+        var inputs = document.getElementsByName("caccount");
+        var name = inputs[0].value;
+        var email = inputs[1].value;
+        var password = inputs[2].value;
+        var phnum = inputs[3].value;
+        var accountn = inputs[4].value;
+        var routingn = inputs[5].value;
+        var cardname = inputs[6].value;
+        var cardn = inputs[7].value;
+        var cvv2 = inputs[8].value;
+        var date = inputs[9].value;
+        var month = date.substring(0, 1);
+        var year = date.substring(2, 5);
+        var uid = "";
+        $.ajax({
+            url: "http://localhost:5000/CreateUser?name=" + name + "&email=" + email + "&password=" + password + "&phnum=" + phnum,
+            datatype: 'json',
+            success: function(res){
+                uid = res;
+                alert(res);
+            },
+            error: function(res){
+                alert("error");
+            }
+        });
+
+        //addBankAccount(uid, accountn, routingn);
+        //addBankCard(uid, cardname, cardn, cvv2, Number(month), Number(year));
+
+        hideAccountWin();
+
     }
 
-    function showMainButtons(){
-        document.getElementById("logout").style.display = "block";
-        document.getElementById("managePkg").style.display = "block";
-        document.getElementById("ad").style.display = "block";
+
+
+    function addBankAccount(uid, accountn, routingn) {
+        $.ajax({
+            url: "http://localhost:5000/AddBankAccount?uid=" + uid + "&accountn=" + accountn + "&routingn=" + routingn,
+            datatype: 'json',
+            method: "POST",
+            success: function(res){
+                alert(res);
+            },
+            error: function(res){
+                alert("error");
+            }
+        });
     }
 
-    function hideMainButtons(){
-        document.getElementById("logout").style.display = "none";
-        document.getElementById("managePkg").style.display = "none";
+    function addBankCard(uid, hname, cardn, cvv2, year, month) {
+        $.ajax({
+            url: "http://localhost:5000/AddBankCard?uid=" + uid + "&holder_name=" + hname + "&card_number=" + cardn + "&cvv2=" + cvv2 + "&month=" + month + "&year=" + year,
+            datatype: 'json',
+            method: "POST",
+            success: function(res){
+                alert(res);
+            },
+            error: function(res){
+                alert("error");
+            }
+        });
     }
 
-    function addLi(package){
-        var li = document.createElement("li");
-        li.setAttribute("class", "newLi");
-        addSpan(li, package);
-        addDelButton(li);
-        document.getElementById("allPkg").appendChild(li);
+    function userLogIn(){
+        var u = document.getElementById("Email").value;
+        var p = document.getElementById("pwd").value;
+        $.ajax({
+            url: "http://localhost:5000/UserLogin?email=" + u + "&password=" + p,
+            datatype: 'json',
+            success: function(res){
+                if (res.length != 0) {
+                    login();
+                    userID = res[0];
+                    getUserAllPackages();
+                }
+                else {
+                    alert("The user does not exist, please create an account!!!");
+                }
+            },
+            error: function(res){
+                alert("error");
+            }
+        });
     }
 
-    function addSpan(li, package){
-        var span = document.create("span");
-        span.innerHTML = package.id + "    " + "package.status";
-        li.appendChild(span);
+
+    function getUserAllPackages() {
+        $.ajax({
+            url: "http://localhost:5000/UserAllPackages?userId=" + userID,
+            datatype: 'json',
+            method: 'GET',
+            success: function(res){
+                for (var i = 0; i < res.length; i++){
+                    addLi(res[i][0]);
+                }
+            },
+            error: function(res){
+                alert(res);
+            }
+        });
+
     }
 
-    function addPackage(){
-        confirm("Are you sure to add a new package?");
-        hideAddPkgWin();
+    function getUserOnePackage(package) {
+        curpkg = package;
+        $.ajax({
+            url: "http://localhost:5000/UserOnePackage?packageId=" + package,
+            datatype: 'json',
+            success: function(res){
+                showPkgDetailsWin(curpkg, res);
+            },
+            error: function(res){
+                alert("error");
+            }
+        });
     }
 
-    function deletePackage(){
-        confirm("Are you sure to delete this package?");
-    }
-
-    function showAddPkgWin(){
-        document.getElementById("addPkg").style.display = "block";
-    }
-
-    function hideAddPkgWin(){
-        document.getElementById("addPkg").style.display = "none";
-    }
-
-    function showPkgDetailsWin(){
+    function showPkgDetailsWin(package, list){
+        var array = String(list[10]).split(',');
+        for (var i = 0; i < array.length; i++){
+            alert(array[i]);
+        }
+        document.getElementById("trackingId").innerHTML = "TrackingID: " + package;
+        document.getElementById("sd").innerHTML = "Shipped Date: 08/01/2018";
+        document.getElementById("ed").innerHTML = "Estimated Date: 12/12/2019";
+        document.getElementById("ads").innerHTML = "Shipping Address: " + String(list[10]).substring(2,20);
+        document.getElementById("status").innerHTML = "Status: delivering";
+        document.getElementById("sder").innerHTML = "Sender: John";
+        document.getElementById("rcer").innerHTML = "Receiver: Sam";
+        document.getElementById("wt").innerHTML = "Weight: " + list[7];
+        document.getElementById("type").innerHTML = "Type: " + list[6];
+        document.getElementById("date").innerHTML = "09/02/2018";
+        document.getElementById("place").innerHTML = "California, CA, US";
         document.getElementById("pkgDetails").style.display = "block";
+    }
+
+    function addOnePackage() {
+        var inputs = document.getElementsByName("pkgd");
+        var receiver = inputs[0].value;
+        var sender = inputs[1].value;
+        var type = inputs[2].value;
+        var weight = inputs[3].value;
+        var number = inputs[4].value;
+        var street = inputs[5].value;
+        var city = inputs[6].value;
+        var state = inputs[7].value;
+        var country = inputs[8].value;
+        var zip = inputs[9].value;
+        var strn = inputs[10].value;
+        var haz = document.getElementsByName("hazardous");
+        var isHaz = false;
+        if (haz[0].checked == true){
+            isHaz = true;
+        }
+
+        //addAddress(number, strn, street, city, state, zip, country);
+
+        $.ajax({
+            url: "http://localhost:5000/AddOneUserPackage?uid=" + userID + "&vid=1&did=9&speed=25.0&aid=6" + "&type=" + type + "&weight=" + weight + "&haz=" + isHaz,
+            datatype: 'json',
+            method: "POST",
+            success: function(res){
+                alert(res);
+            },
+            error: function(res){
+                alert("error");
+            }
+        });
+
+        addPackage();
+    }
+
+
+
+    function addAddress(aptn, strn, strname, city, s, zip, country) {
+
+         $.ajax({
+            url: "http://localhost:5000/AddAddress?aptn=" + aptn + "&strn=" + strn + "&strname=" + strname + "&city=" + city + "&state=" + s + "&zip=" + zip + "&country=" + country,
+            datatype: 'json',
+            method: "POST",
+            success: function(res){
+                alert(res);
+            },
+            error: function(res){
+                alert("error");
+            }
+         });
+
 
     }
 
-    function hidePkgDetailsWin(){
-        document.getElementById("pkgDetails").style.display = "none";
-
+    function deleteAPackage() {
+        $.ajax({
+            url: "http://localhost:5000/DeleteOneUserPackage?packageId=" + curpkg,
+            datatype: 'json',
+            method: "DELETE",
+            success: function(res){
+                alert(res);
+                deletePackage();
+            },
+            error: function(res){
+                alert("error");
+            }
+        });
+        deletePackage();
     }
 
-    function deletePackage(){
-        confirm("Are you sure to delete this package?");
-        hidePkgDetailsWin();
+    function getAccountInfo() {
+        $.ajax({
+            url: "http://localhost:5000/UserInfo?userId=" + userID,
+            datatype: 'json',
+            success: function(res){
+                alert(res);
+                showAccountWin(res);
+            },
+            error: function(res){
+                alert("error");
+            }
+        });
+
     }
-
-    function showPkgLi(){
-        document.getElementById("pkgLi").style.display = "block";
-    }
-
-    function hidePkgLi(){
-        document.getElementById("pkgLi").style.display = "none";
-    }
-
-
 
 </script>
 
-</body>
 </html>
